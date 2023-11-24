@@ -1,0 +1,15 @@
+{
+  "name": "sri-lanka-academy-2023",
+  "version": "1.0.0",
+  "description": "Node scripts to configure metadata for Android Implementation Academy - Sri Lanka 2023",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "clone": "node clone_programs.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
