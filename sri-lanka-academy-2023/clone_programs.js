@@ -7,8 +7,9 @@ const user = {
 }
 
 const superAdminUserId = "M5zQapPyTZI";
+const superAdminGroupId = "pey6425xXt5";
 const baseAndroidUserId = "zGnHx4TUCTM";
-const baseAdminUserId = "scysIITtJGV";
+const baseAdminUserId = "sH7G8eVjHfc";
 const userFields = "name,username,surname,firstName,organisationUnits,teiSearchOrganisationUnits,id,userRoles,userGroups";
 
 const baseProgramId = "SSLpOM0r1U7" // Immunization
@@ -19,13 +20,16 @@ const programRuleToDelete = [
 ];
 
 const usersFilePath = "users.csv";
+const mappingFile = "mapping.json";
 
 async function main() {
     const instances = [
-        { url: "http://localhost:8080", from: 4, to: 4 }
+        {url: "http://localhost:8080", from: 100, to: 115},
+        {url: "http://localhost:8080", from: 116, to: 130},
     ];
 
     fs.writeFileSync(usersFilePath, "");
+    fs.writeFileSync(mappingFile, "[]");
 
     for (let instance of instances) {
         const cloneMetadataInstance = new CloneMetadataInstance(instance.url);
@@ -36,16 +40,15 @@ async function main() {
 class CloneMetadataInstance {
 
     url;
+
     constructor(url) {
         this.url = url;
     }
 
     async cloneMetadata(fromIdx, toIdx) {
-
         // Download base metadata (user, program)
         const baseAndroidUser = await (await this.get(`users/${baseAndroidUserId}?fields=${userFields}`)).json();
-        //TODO
-        //const baseAdminUser = await (await get(`users/${baseAdminUserId}?fields=${userFields}`)).json();
+        const baseAdminUser = await (await this.get(`users/${baseAdminUserId}?fields=${userFields}`)).json();
 
         const baseProgramMetadata = await (await this.get(`programs/${baseProgramId}/metadata`)).json();
 
@@ -55,16 +58,15 @@ class CloneMetadataInstance {
 
             const password = "Android123!";
             const androidUserId = await this.cloneUser(id, baseAndroidUser, password);
-            //TODO
-            //const adminUserId = await cloneUser(id, baseAdminUser, password);
+            const adminUserId = await this.cloneUser(id, baseAdminUser, password);
 
-            await this.cloneProgramMetadata(id, baseProgramMetadata, androidUserId);
+            await this.cloneProgramMetadata(id, baseProgramMetadata, androidUserId, adminUserId);
         }
     }
 
     async cloneUser(id, baseUser, password) {
         const user = this.copy(baseUser);
-        user.username = `${baseUser.username}_user${id}`;
+        user.username = `${baseUser.username}${id}`;
         user.name = this.prefix(id, baseUser.name);
         user.firstName = this.prefix(id, baseUser.firstName);
         user.id = (await this.getIds())[0];
@@ -77,11 +79,11 @@ class CloneMetadataInstance {
             fs.appendFileSync(usersFilePath, `${this.url},${user.username},${password}\n`)
             return user.id;
         } else {
-            throw(`There is a problem creating user ${user.username}`);
+            throw (`There is a problem creating user ${user.username}`);
         }
     }
 
-    async cloneProgramMetadata(id, baseProgramMetadata, androidUserId) {
+    async cloneProgramMetadata(id, baseProgramMetadata, androidUserId, adminUserId) {
         const programMetadata = this.copy(baseProgramMetadata);
 
         const optionIdMapping = await this.cloneOptions(id, programMetadata);
@@ -97,13 +99,8 @@ class CloneMetadataInstance {
 
         const programRuleVariableIdMapping = await this.cloneProgramRuleVariables(id, programMetadata, programIdMapping, dataElementIdMapping, programStageIdMapping);
         const programRuleIdMapping = await this.cloneProgramRules(id, programMetadata, programIdMapping);
-
         const programRuleActionIdMapping = await this.cloneProgramRuleActions(id, programMetadata, dataElementIdMapping, programStageIdMapping, programStageSectionIdMapping, optionIdMapping, programIndicatorIdMapping, programRuleIdMapping);
         this.reAssignProgramRuleActions(id, programMetadata, programRuleActionIdMapping);
-
-
-        // TODO CHECK IF WE NEED THEM
-        delete programMetadata.programNotificationTemplates;    // TODO
 
         // TO DELETE
         delete programMetadata.system;
@@ -111,20 +108,26 @@ class CloneMetadataInstance {
         delete programMetadata.trackedEntityAttributes;         // Unmodified
         delete programMetadata.programTrackedEntityAttributes;  // As part of program
         delete programMetadata.programStageDataElements;        // As part of programStage
+        delete programMetadata.programNotificationTemplates;    // Not needed
         delete programMetadata.categoryOptions;                 // Unmodified
         delete programMetadata.categories;                      // Unmodified
         delete programMetadata.categoryCombos;                  // Unmodified
         delete programMetadata.categoryOptionCombos;            // Unmodified
 
         // Sharing
-        this.assignProgramMetadataSharing(programMetadata, androidUserId);
+        this.assignProgramMetadataSharing(programMetadata, androidUserId, adminUserId);
 
         // Changes for exercises
         this.removeProgramStyle(programMetadata);
+        this.removeOptionStyle(programMetadata);
         this.setProgramAttributesRenderingToDefault(programMetadata);
         this.setProgramStageSectionRenderingToListing(programMetadata);
         this.removeProgramRules(programMetadata, programRuleIdMapping);
-        // TODO Remove icons/colors from options?
+
+        // Save mapping
+        this.saveMappings(id, optionIdMapping, optionIdMapping, dataElementIdMapping, programStageSectionIdMapping,
+            programStageIdMapping, programIdMapping, programIndicatorIdMapping,
+            programRuleVariableIdMapping, programRuleIdMapping, programRuleActionIdMapping);
 
         // Post metadata
         const response = await this.post("metadata", programMetadata).then(r => r.json());
@@ -180,7 +183,7 @@ class CloneMetadataInstance {
             dataElement.formName = dataElement.formName || dataElement.name;
             dataElement.name = this.prefix(id, dataElement.name);
             dataElement.shortName = this.prefix(id, dataElement.shortName);
-            dataElement.optionSet = dataElement.optionSet ? { "id": optionSetIdMapping[dataElement.optionSet.id] } : null;
+            dataElement.optionSet = dataElement.optionSet ? {"id": optionSetIdMapping[dataElement.optionSet.id]} : null;
         });
 
         return dataElementIdMapping;
@@ -242,12 +245,8 @@ class CloneMetadataInstance {
                 delete programAttribute.program;
             });
 
-            //TODO
             delete program.programSections;
-
-            //TODO
             delete program.notificationTemplates;
-
         })
 
         return programIdMapping;
@@ -293,13 +292,13 @@ class CloneMetadataInstance {
             variableIdMapping[variable.id] = newVariableId;
             variable.id = newVariableId;
             if (variable.program != null) {
-                variable.program = { "id" : programIdMapping[variable.program.id] };
+                variable.program = {"id": programIdMapping[variable.program.id]};
             }
             if (variable.programStage != null) {
-                variable.programStage = { "id" : stageIdMapping[variable.programStage.id] };
+                variable.programStage = {"id": stageIdMapping[variable.programStage.id]};
             }
             if (variable.dataElement != null) {
-                variable.dataElement = { "id" : dataElementIdMapping[variable.dataElement.id] };
+                variable.dataElement = {"id": dataElementIdMapping[variable.dataElement.id]};
             }
         });
 
@@ -318,19 +317,19 @@ class CloneMetadataInstance {
             action.programRule.id = ruleIdMapping[action.programRule.id]
 
             if (action.dataElement != null) {
-                action.dataElement = { "id": dataElementIdMapping[action.dataElement.id] };
+                action.dataElement = {"id": dataElementIdMapping[action.dataElement.id]};
             }
             if (action.programStage != null) {
-                action.programStage = { "id": stageIdMapping[action.programStage.id] };
+                action.programStage = {"id": stageIdMapping[action.programStage.id]};
             }
             if (action.programStageSection != null) {
-                action.programStageSection = { "id": stageSectionIdMapping[action.programStageSection.id] };
+                action.programStageSection = {"id": stageSectionIdMapping[action.programStageSection.id]};
             }
             if (action.option != null) {
-                action.option = { "id": optionIdMapping[action.option.id] };
+                action.option = {"id": optionIdMapping[action.option.id]};
             }
             if (action.programIndicator != null) {
-                action.programIndicator = { "id": programIndicatorIdMapping[action.programIndicator.id] };
+                action.programIndicator = {"id": programIndicatorIdMapping[action.programIndicator.id]};
             }
         });
 
@@ -361,29 +360,52 @@ class CloneMetadataInstance {
         })
     }
 
-    assignProgramMetadataSharing(programMetadata, androidUserId) {
+    assignProgramMetadataSharing(programMetadata, androidUserId, adminUserId) {
         const usersSharing = {};
-        usersSharing[androidUserId] = { "access": "r-rw----", "id": androidUserId }
-        //usersSharing[baseAdminUserId] = { "access": "rw------", "id": baseAdminUserid }
-        usersSharing[superAdminUserId] = { "access": "rw------", "id": superAdminUserId };
+        usersSharing[androidUserId] = {"access": "r-rw----", "id": androidUserId}
+        usersSharing[adminUserId] = {"access": "rw------", "id": adminUserId}
+        usersSharing[superAdminUserId] = {"access": "rw------", "id": superAdminUserId};
 
-        //TODO user groups
+        const userGroupsSharing = {};
+        userGroupsSharing[superAdminGroupId] = {"access": "rwrw----", "id": superAdminGroupId};
 
-        const sharing = {
-            "public": "--------",
-            "users": usersSharing
+        const programSharing = {
+            "public": "r-------",
+            "users": usersSharing,
+            "userGroups": userGroupsSharing
         }
+        const restrictedSharing = {
+            "public": "--------",
+            "users": usersSharing,
+            "userGroups": userGroupsSharing
+        }
+
+
         programMetadata.programs.forEach(program => {
-            program.sharing = sharing
+            program.sharing = programSharing
         });
         programMetadata.programStages.forEach(stage => {
-            stage.sharing = sharing
+            stage.sharing = programSharing
         });
+
+        programMetadata.optionSets.forEach(optionSet => {
+            optionSet.sharing = restrictedSharing;
+        });
+
+        programMetadata.programIndicators.forEach(programIndicator => {
+            programIndicator.sharing = restrictedSharing;
+        })
     }
 
     removeProgramStyle(programMetadata) {
         programMetadata.programs.forEach(program => {
-            delete program.style
+            delete program.style;
+        });
+    }
+
+    removeOptionStyle(programMetadata) {
+        programMetadata.options.forEach(option => {
+            delete option.style;
         });
     }
 
@@ -399,21 +421,48 @@ class CloneMetadataInstance {
         const mappedRulesToDelete = programRuleToDelete.map(oldRuleId => programRuleIdMapping[oldRuleId]);
 
         programMetadata.programRules = programMetadata.programRules.filter(rule => {
-            !mappedRulesToDelete.includes(rule.id)
+            return !mappedRulesToDelete.includes(rule.id)
         });
         programMetadata.programRuleActions = programMetadata.programRuleActions.filter(action => {
-            !mappedRulesToDelete.includes(action.programRule.id);
+            return !mappedRulesToDelete.includes(action.programRule.id);
         })
     }
 
     setProgramAttributesRenderingToDefault(programMetadata) {
         programMetadata.programs.forEach(program => {
             program.programTrackedEntityAttributes.forEach(attribute => {
-                if (attribute.renderType != null && attribute.renderType.MOBILE.type !== "CANVAS") {
-                    delete attribute.renderType;
-                }
+                delete attribute.renderType;
             });
         });
+    }
+
+    saveMappings(id, options, optionSets, dataElements, programStageSections, programStages, programs, programIndicators,
+                 programRuleVariables, programRules, programRuleActions) {
+        const content = fs.readFileSync(mappingFile, 'utf8').toString();
+        const existingMapping = JSON.parse(content);
+
+        const instanceMapping = existingMapping.find(m => m.url === this.url) || {};
+
+        const newInstanceMapping = {
+            "options": Object.assign(instanceMapping.options || {}, options),
+            "optionSets": Object.assign(instanceMapping.optionSets || {}, optionSets),
+            "dataElements": Object.assign(instanceMapping.dataElements || {}, dataElements),
+            "programStageSections": Object.assign(instanceMapping.programStageSections || {}, programStageSections),
+            "programStages": Object.assign(instanceMapping.programStages || {}, programStages),
+            "programs": Object.assign(instanceMapping.programs || {}, programs),
+            "programIndicators": Object.assign(instanceMapping.programIndicators || {}, programIndicators),
+            "programRuleVariables": Object.assign(instanceMapping.programRuleVariables || {}, programRuleVariables),
+            "programRules": Object.assign(instanceMapping.programRules || {}, programRules),
+            "programRuleActions": Object.assign(instanceMapping.programRuleActions || {}, programRuleActions)
+        };
+
+        const newMapping = existingMapping.concat({
+            "url": this.url,
+            "userIdx": id,
+            "mapping": newInstanceMapping
+        });
+
+        fs.writeFileSync(mappingFile, JSON.stringify(newMapping, null, 2));
     }
 
     replaceExpressionMapping(expression, dataElementIdMapping, stageIdMapping) {
@@ -470,5 +519,8 @@ class CloneMetadataInstance {
     }
 }
 
-main()
-    .then(() => console.log("Process completed"));
+const start = new Date().getTime();
+main().then(() => {
+    const end = new Date().getTime();
+    console.log("Process completed in " + ((end - start) / 1000) + " seconds.");
+});
