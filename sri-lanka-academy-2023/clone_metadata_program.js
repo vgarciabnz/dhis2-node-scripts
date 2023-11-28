@@ -1,7 +1,8 @@
 import fs from "fs";
-import fetch from "node-fetch";
+import Utils from "./utils.js";
+import DHIS2HttpClient from "./dhis_http_client.js";
 
-export default class CloneProgramMetadataInstance {
+export default class CloneProgramMetadataJob {
 
     userFields = "name,username,surname,firstName,organisationUnits,teiSearchOrganisationUnits,id,userRoles,userGroups";
 
@@ -13,15 +14,15 @@ export default class CloneProgramMetadataInstance {
         this.usersFilePath = usersFilePath;
         this.mappingFilePath = mappingFilePath;
 
-        this.headers = this.getHeaders();
+        this.httpClient = new DHIS2HttpClient(this.url, this.superAdminUser);
     }
 
-    async cloneMetadata(fromIdx, toIdx) {
+    async doWork(fromIdx, toIdx) {
         // Download base metadata (user, program)
-        const baseAndroidUser = await (await this.get(`users/${this.templateInfo.baseAndroidUserId}?fields=${this.userFields}`)).json();
-        const baseAdminUser = await (await this.get(`users/${this.templateInfo.baseAdminUserId}?fields=${this.userFields}`)).json();
+        const baseAndroidUser = await (await this.httpClient.get(`users/${this.templateInfo.baseAndroidUserId}?fields=${this.userFields}`)).json();
+        const baseAdminUser = await (await this.httpClient.get(`users/${this.templateInfo.baseAdminUserId}?fields=${this.userFields}`)).json();
 
-        const baseProgramMetadata = await (await this.get(`programs/${this.templateInfo.baseProgramId}/metadata`)).json();
+        const baseProgramMetadata = await (await this.httpClient.get(`programs/${this.templateInfo.baseProgramId}/metadata`)).json();
 
         for (let id = fromIdx; id <= toIdx; id++) {
             // Clone the users
@@ -36,14 +37,14 @@ export default class CloneProgramMetadataInstance {
     }
 
     async cloneUser(id, baseUser, password) {
-        const user = this.copy(baseUser);
+        const user = Utils.copy(baseUser);
         user.username = `${baseUser.username}${id}`;
-        user.name = this.prefix(id, baseUser.name);
-        user.firstName = this.prefix(id, baseUser.firstName);
-        user.id = (await this.getIds())[0];
+        user.name = Utils.prefix(id, baseUser.name);
+        user.firstName = Utils.prefix(id, baseUser.firstName);
+        user.id = (await this.httpClient.getIds())[0];
         user.password = password;
 
-        const response = await this.post("users", user).then(r => r.json());
+        const response = await this.httpClient.post("users", user).then(r => r.json());
 
         if (response.status === "OK") {
             console.log(`User ${user.username} created successfully`);
@@ -55,7 +56,7 @@ export default class CloneProgramMetadataInstance {
     }
 
     async cloneProgramMetadata(id, baseProgramMetadata, androidUserId, adminUserId) {
-        const programMetadata = this.copy(baseProgramMetadata);
+        const programMetadata = Utils.copy(baseProgramMetadata);
 
         const optionIdMapping = await this.cloneOptions(id, programMetadata);
         const optionSetIdMapping = await this.cloneOptionSets(id, programMetadata, optionIdMapping);
@@ -101,7 +102,7 @@ export default class CloneProgramMetadataInstance {
             programRuleVariableIdMapping, programRuleIdMapping, programRuleActionIdMapping);
 
         // Post metadata
-        const response = await this.post("metadata", programMetadata).then(r => r.json());
+        const response = await this.httpClient.post("metadata", programMetadata).then(r => r.json());
 
         console.log("Import metadata: " + response.response.status);
         console.log(response.response.stats);
@@ -111,7 +112,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneOptions(id, program) {
         const optionsSize = program.options.length;
-        const newOptionIds = await this.getIds(optionsSize);
+        const newOptionIds = await this.httpClient.getIds(optionsSize);
         const optionIdMapping = {};
 
         program.options.forEach((option, idx) => {
@@ -127,15 +128,15 @@ export default class CloneProgramMetadataInstance {
 
     async cloneOptionSets(id, program, optionIdMapping) {
         const optionSetsSize = program.optionSets.length;
-        const newOptionSetIds = await this.getIds(optionSetsSize);
+        const newOptionSetIds = await this.httpClient.getIds(optionSetsSize);
         const optionSetIdMapping = {};
 
         program.optionSets.forEach((optionSet, idx) => {
             const newOptionSetId = newOptionSetIds[idx];
             optionSetIdMapping[optionSet.id] = newOptionSetId;
             optionSet.id = newOptionSetId;
-            optionSet.name = this.prefix(id, optionSet.name);
-            optionSet.code = optionSet.code ? this.prefix(id, optionSet.code) : null;
+            optionSet.name = Utils.prefix(id, optionSet.name);
+            optionSet.code = optionSet.code ? Utils.prefix(id, optionSet.code) : null;
             optionSet.options.forEach(option => option.id = optionIdMapping[option.id]);
         });
 
@@ -144,7 +145,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneDataElements(id, program, optionSetIdMapping) {
         const dataElementSize = program.dataElements.length;
-        const newDataElementIds = await this.getIds(dataElementSize);
+        const newDataElementIds = await this.httpClient.getIds(dataElementSize);
         const dataElementIdMapping = {};
 
         program.dataElements.forEach((dataElement, idx) => {
@@ -152,8 +153,8 @@ export default class CloneProgramMetadataInstance {
             dataElementIdMapping[dataElement.id] = newDataElementId;
             dataElement.id = newDataElementId;
             dataElement.formName = dataElement.formName || dataElement.name;
-            dataElement.name = this.prefix(id, dataElement.name);
-            dataElement.shortName = this.prefix(id, dataElement.shortName);
+            dataElement.name = Utils.prefix(id, dataElement.name);
+            dataElement.shortName = Utils.prefix(id, dataElement.shortName);
             dataElement.optionSet = dataElement.optionSet ? {"id": optionSetIdMapping[dataElement.optionSet.id]} : null;
         });
 
@@ -162,7 +163,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramStageSections(id, program, dataElementIdMapping) {
         const programStageSectionSize = program.programStageSections.length;
-        const newIds = await this.getIds(programStageSectionSize);
+        const newIds = await this.httpClient.getIds(programStageSectionSize);
         const programStageSectionIdMapping = {};
 
         program.programStageSections.forEach((section, idx) => {
@@ -178,7 +179,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramStages(id, program, dataElementIdMapping, stageSectionIdMapping) {
         const stagesSize = program.programStages.length;
-        const newStageIds = await this.getIds(stagesSize);
+        const newStageIds = await this.httpClient.getIds(stagesSize);
         const programStageIdMapping = {};
 
         program.programStages.forEach((stage, idx) => {
@@ -200,15 +201,15 @@ export default class CloneProgramMetadataInstance {
     }
 
     async cloneProgram(id, program, stagesIdMapping) {
-        const newIds = await this.getIds(program.programs.length);
+        const newIds = await this.httpClient.getIds(program.programs.length);
         const programIdMapping = {};
 
         program.programs.forEach((program, idx) => {
             const newProgramId = newIds[idx];
             programIdMapping[program.id] = newProgramId;
             program.id = newProgramId;
-            program.name = this.prefix(id, program.name);
-            program.shortName = this.prefix(id, program.shortName);
+            program.name = Utils.prefix(id, program.name);
+            program.shortName = Utils.prefix(id, program.shortName);
 
             program.programStages.forEach(stage => stage.id = stagesIdMapping[stage.id]);
             program.programTrackedEntityAttributes.forEach(programAttribute => {
@@ -225,10 +226,10 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramIndicators(id, program, programIdMapping, dataElementIdMapping, stageIdMapping) {
         const programIndicatorsSize = program.programIndicators.length;
-        const newProgramIndicatorIds = await this.getIds(programIndicatorsSize);
+        const newProgramIndicatorIds = await this.httpClient.getIds(programIndicatorsSize);
         const programIndicatorIdMapping = {};
 
-        const boundariesIds = await this.getIds(programIndicatorsSize * 4); // Just to be sure we have enough ids in case an indicator has more than 2 boundaries
+        const boundariesIds = await this.httpClient.getIds(programIndicatorsSize * 4); // Just to be sure we have enough ids in case an indicator has more than 2 boundaries
         let boundaryIdx = 0;
 
         program.programIndicators.forEach((programIndictor, idx) => {
@@ -236,8 +237,8 @@ export default class CloneProgramMetadataInstance {
             programIndicatorIdMapping[programIndictor.id] = newProgramIndicatorId;
             programIndictor.id = newProgramIndicatorId;
             programIndictor.program.id = programIdMapping[programIndictor.program.id];
-            programIndictor.name = this.prefix(id, programIndictor.name);
-            programIndictor.shortName = this.prefix(id, programIndictor.shortName);
+            programIndictor.name = Utils.prefix(id, programIndictor.name);
+            programIndictor.shortName = Utils.prefix(id, programIndictor.shortName);
             delete programIndictor.code;
 
             programIndictor.analyticsPeriodBoundaries.forEach(boundary => {
@@ -255,7 +256,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramRuleVariables(id, program, programIdMapping, dataElementIdMapping, stageIdMapping) {
         const variableSize = program.programRuleVariables.length;
-        const newIds = await this.getIds(variableSize);
+        const newIds = await this.httpClient.getIds(variableSize);
         const variableIdMapping = {};
 
         program.programRuleVariables.forEach((variable, idx) => {
@@ -278,7 +279,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramRuleActions(id, program, dataElementIdMapping, stageIdMapping, stageSectionIdMapping, optionIdMapping, programIndicatorIdMapping, ruleIdMapping) {
         const actionsSize = program.programRuleActions.length;
-        const newActionsIds = await this.getIds(actionsSize);
+        const newActionsIds = await this.httpClient.getIds(actionsSize);
         const actionIdMapping = {};
 
         program.programRuleActions.forEach((action, idx) => {
@@ -309,7 +310,7 @@ export default class CloneProgramMetadataInstance {
 
     async cloneProgramRules(id, program, programIdMapping) {
         const rulesSize = program.programRules.length;
-        const newIds = await this.getIds(rulesSize);
+        const newIds = await this.httpClient.getIds(rulesSize);
         const programRuleIdMapping = {};
 
         program.programRules.forEach((rule, idx) => {
@@ -317,7 +318,7 @@ export default class CloneProgramMetadataInstance {
             programRuleIdMapping[rule.id] = newProgramRuleId;
             rule.id = newProgramRuleId;
             rule.program.id = programIdMapping[rule.program.id];
-            rule.name = this.prefix(id, rule.name);
+            rule.name = Utils.prefix(id, rule.name);
         });
 
         return programRuleIdMapping;
@@ -409,8 +410,7 @@ export default class CloneProgramMetadataInstance {
 
     saveMappings(id, androidUserId, adminUseId, options, optionSets, dataElements, programStageSections, programStages, programs,
                  programIndicators, programRuleVariables, programRules, programRuleActions) {
-        const content = fs.readFileSync(this.mappingFilePath, 'utf8').toString();
-        const existingMapping = JSON.parse(content);
+        const existingMapping = Utils.readAndParseFile(this.mappingFilePath);
 
         const instanceMapping = existingMapping.find(m => m.url === this.url) || {};
 
@@ -454,42 +454,5 @@ export default class CloneProgramMetadataInstance {
         } else {
             return null;
         }
-    }
-
-    prefix(idx, str) {
-        return `[User ${idx}] ${str}`
-    }
-
-    getIds(number = 1) {
-        return this.get(`system/id?limit=${number}`)
-            .then(response => response.json())
-            .then(json => json.codes);
-    }
-
-    // NETWORK
-
-    getHeaders() {
-        return {
-            'Authorization': 'Basic ' + Buffer.from(this.superAdminUser.username + ":" + this.superAdminUser.password).toString('base64'),
-            "Content-Type": "application/json"
-        }
-    };
-
-    get(apiStr) {
-        return fetch(this.url + "/api/" + apiStr, {
-            headers: this.headers
-        });
-    }
-
-    post(apiStr, body) {
-        return fetch(this.url + "/api/" + apiStr, {
-            method: "POST",
-            headers: this.headers,
-            body: JSON.stringify(body)
-        })
-    }
-
-    copy(object) {
-        return JSON.parse(JSON.stringify(object));
     }
 }
