@@ -18,8 +18,27 @@ export default class UpdateProgramSharing {
 
             for (let id = instance.from; id <= instance.to; id++) {
                 const userConfig = this.mappings.find(m => m.userIdx === id);
-                await this.updateProgramSharing(httpClient, userConfig);
+                await this.resetTrackedEntityType(httpClient, userConfig);
             }
+        }
+    }
+
+    async resetTrackedEntityType(httpClient, userConfig) {
+        const programMapping = userConfig.mapping.programs;
+
+        for (let oldProgram in programMapping) {
+            const newProgramId = programMapping[oldProgram];
+
+            const program = await httpClient.get(`programs/${newProgramId}.json?fields=:all,!relatedProgram`).then(r => r.json());
+
+            console.log(`Updating tracked entity type for user ${userConfig.userIdx} (${userConfig.url}) - program ${newProgramId}`);
+
+            program.trackedEntityType = {
+                "id": "r0eu7nkzXSF"
+            }
+
+            const importMode = "COMMIT";
+            await httpClient.postToMetadata({"programs": [program]}, importMode);
         }
     }
 
@@ -42,9 +61,7 @@ export default class UpdateProgramSharing {
             delete program.relatedProgram;
 
             const importMode = "COMMIT";
-            const response = await httpClient.post(`metadata?importMode=${importMode}`, {"programs": [program]}).then(r => r.json());
-            console.log("Import metadata: " + response.response.status);
-            console.log(response.response.stats);
+            await httpClient.postToMetadata({"programs": [program]}, importMode);
         }
 
         for (let oldProgramStage in userConfig.mapping.programStages) {
@@ -56,12 +73,10 @@ export default class UpdateProgramSharing {
                 if (access.id === userConfig.adminUserId) {
                     access.access = "rwrw----";
                 }
-            })
+            });
 
             const importMode = "COMMIT";
-            const response = await httpClient.post(`metadata?importMode=${importMode}`, {"programStages": [programStage]}).then(r => r.json());
-            console.log("Import metadata: " + response.response.status);
-            console.log(response.response.stats);
+            await httpClient.postToMetadata({"programStages": [programStage]}, importMode);
         }
     }
 }

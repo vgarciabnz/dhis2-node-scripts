@@ -25,8 +25,8 @@ const programRuleToDelete = [
 ];
 
 const instances = [
-    //{url: "https://academy.demos.dhis2.org/android1", from: 0, to: 5},
-    //{url: "https://academy.demos.dhis2.org/android2", from: 6, to: 10},
+    {url: "https://academy.demos.dhis2.org/android1", from: 0, to: 5},
+    {url: "https://academy.demos.dhis2.org/android2", from: 6, to: 10},
     {url: "https://academy.demos.dhis2.org/android3", from: 11, to: 15},
     {url: "https://academy.demos.dhis2.org/android4", from: 16, to: 20},
     {url: "https://academy.demos.dhis2.org/android5", from: 21, to: 25},

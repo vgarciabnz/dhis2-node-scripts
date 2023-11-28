@@ -102,12 +102,8 @@ export default class CloneProgramMetadataJob {
             programRuleVariableIdMapping, programRuleIdMapping, programRuleActionIdMapping);
 
         // Post metadata
-        const response = await this.httpClient.post("metadata", programMetadata).then(r => r.json());
-
-        console.log("Import metadata: " + response.response.status);
-        console.log(response.response.stats);
+        await this.httpClient.postToMetadata(programMetadata, "COMMIT");
         console.log("\n");
-        //console.log(JSON.stringify(response, null, 2));
     }
 
     async cloneOptions(id, program) {

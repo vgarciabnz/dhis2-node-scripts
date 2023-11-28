@@ -68,10 +68,7 @@ export default class CreateVisualization {
         };
 
         const mode = "COMMIT";
-        const response = await httpClient.post(`metadata?importMode=${mode}`, visualizationPayload).then(r => r.json());
-
-        console.log("Import metadata: " + response.response.status);
-        console.log(response.response.stats);
+        await httpClient.postToMetadata(visualizationPayload, mode);
         console.log("\n");
     }
 

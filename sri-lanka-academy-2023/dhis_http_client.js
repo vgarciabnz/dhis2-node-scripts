@@ -36,4 +36,10 @@ export default class DHIS2HttpClient {
             .then(response => response.json())
             .then(json => json.codes);
     }
+
+    async postToMetadata(body, importMode) {
+        const response = await this.post(`metadata?importMode=${importMode}`, body).then(r => r.json());
+        console.log("Import metadata: " + response.response.status);
+        console.log(response.response.stats);
+    }
 }
