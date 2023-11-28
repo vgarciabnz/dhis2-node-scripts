@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "clone": "node clone_programs.js"
+    "clone": "node main_clone_script.js"
   },
   "author": "",
   "license": "ISC",
