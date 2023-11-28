@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import CloneProgramMetadataJob from "./clone_metadata_program.js";
 import CreateVisualization from "./create_visualization.js";
+import UpdateProgramSharing from "./update_program_sharing.js";
 
 const superAdminUser = {
     username: "admin",
@@ -24,8 +25,8 @@ const programRuleToDelete = [
 ];
 
 const instances = [
-    {url: "https://academy.demos.dhis2.org/android1", from: 0, to: 5},
-    {url: "https://academy.demos.dhis2.org/android2", from: 6, to: 10},
+    //{url: "https://academy.demos.dhis2.org/android1", from: 0, to: 5},
+    //{url: "https://academy.demos.dhis2.org/android2", from: 6, to: 10},
     {url: "https://academy.demos.dhis2.org/android3", from: 11, to: 15},
     {url: "https://academy.demos.dhis2.org/android4", from: 16, to: 20},
     {url: "https://academy.demos.dhis2.org/android5", from: 21, to: 25},
@@ -36,6 +37,11 @@ const instances = [
 ];
 
 async function main() {
+
+    const updateProgramSharing = new UpdateProgramSharing(superAdminUser, instances, "mappings/mapping_compiled.json");
+
+    await updateProgramSharing.doWork();
+
     /*
     fs.writeFileSync(usersFilePath, "");
     fs.writeFileSync(mappingFilePath, "[]");
