@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import CloneProgramMetadataJob from "./clone_metadata_program.js";
 import CreateVisualization from "./create_visualization.js";
 import UpdateProgramSharing from "./update_program_sharing.js";
+import UpdateRoleJob from "./update_role_authorities.js";
 
 const superAdminUser = {
     username: "admin",
@@ -38,9 +39,10 @@ const instances = [
 
 async function main() {
 
-    const updateProgramSharing = new UpdateProgramSharing(superAdminUser, instances, "mappings/mapping_compiled.json");
+    /*const job = new UpdateRoleJob(superAdminUser, instances, "p8rj2488UOX",
+        ["M_dhis-web-app-management", "M_dhis-web-tracker-capture", "M_dhis-web-cache-cleaner"], []);
 
-    await updateProgramSharing.doWork();
+    await job.doWork();*/
 
     /*
     fs.writeFileSync(usersFilePath, "");
