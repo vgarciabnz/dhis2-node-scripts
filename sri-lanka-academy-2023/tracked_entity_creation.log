@@ -1,0 +1,190 @@
+/usr/bin/npm run clone
+
+> sri-lanka-academy-2023@1.0.0 clone
+> node main_clone_script.js
+
+Importing for user 1 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 1 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 2 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 2 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 3 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 3 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 4 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 4 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android1)
+Import result ERROR
+Importing for user 5 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 5 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android1)
+Import result OK
+Importing for user 6 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 6 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 7 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 7 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 8 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 8 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 9 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 9 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 10 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 10 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android2)
+Import result OK
+Importing for user 11 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 11 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 12 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 12 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 13 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android3)
+Import result ERROR
+Importing for user 13 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 14 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 14 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 15 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android3)
+Import result OK
+Importing for user 15 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android3)
+Import result ERROR
+Importing for user 16 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 16 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 17 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 17 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 18 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 18 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 19 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android4)
+Import result ERROR
+Importing for user 19 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android4)
+Import result ERROR
+Importing for user 20 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 20 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android4)
+Import result OK
+Importing for user 21 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 21 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 22 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 22 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 23 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android5)
+Import result ERROR
+Importing for user 23 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android5)
+Import result ERROR
+Importing for user 24 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 24 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 25 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 25 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android5)
+Import result OK
+Importing for user 26 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 26 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 27 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 27 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 28 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 28 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 29 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 29 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 30 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 30 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android6)
+Import result OK
+Importing for user 31 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 31 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 32 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 32 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 33 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 33 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 34 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 34 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 35 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 35 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android7)
+Import result OK
+Importing for user 36 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 36 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 37 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 37 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 38 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 38 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 39 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 39 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 40 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 40 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android8)
+Import result OK
+Importing for user 41 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 41 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 42 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 42 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 43 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 43 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 44 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 44 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 45 - TEI F8IBumV6T1q (https://academy.demos.dhis2.org/android9)
+Import result OK
+Importing for user 45 - TEI bdGNIIG7hKG (https://academy.demos.dhis2.org/android9)
+Import result OK
+Process completed in 189.435 seconds.
+
+Process finished with exit code 0
+
+

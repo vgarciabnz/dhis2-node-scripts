@@ -1,0 +1,362 @@
+[
+  {
+    "url": "https://academy.demos.dhis2.org/android1",
+    "userIdx": 1,
+    "trackedEntities": {
+      "F8IBumV6T1q": "R3mlNFWbGhO",
+      "bdGNIIG7hKG": "ThjqwAyt0qO"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android1",
+    "userIdx": 2,
+    "trackedEntities": {
+      "F8IBumV6T1q": "zc4kHAEpJnP",
+      "bdGNIIG7hKG": "WLapVm0o6ni"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android1",
+    "userIdx": 3,
+    "trackedEntities": {
+      "F8IBumV6T1q": "oJUXTJNPjr4",
+      "bdGNIIG7hKG": "Jzw2FVEvuCg"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android1",
+    "userIdx": 4,
+    "trackedEntities": {
+      "F8IBumV6T1q": "YgcfhZSEHQ9",
+      "bdGNIIG7hKG": "BoXad0K1xjG"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android1",
+    "userIdx": 5,
+    "trackedEntities": {
+      "F8IBumV6T1q": "e4qYusHPipA",
+      "bdGNIIG7hKG": "eQhaaijk5Ll"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android2",
+    "userIdx": 6,
+    "trackedEntities": {
+      "F8IBumV6T1q": "C8SxXVkoD54",
+      "bdGNIIG7hKG": "ItEHUm6DvIo"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android2",
+    "userIdx": 7,
+    "trackedEntities": {
+      "F8IBumV6T1q": "FCKqHdfRiys",
+      "bdGNIIG7hKG": "S1HaBqe8uAb"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android2",
+    "userIdx": 8,
+    "trackedEntities": {
+      "F8IBumV6T1q": "CvDwCMsmgng",
+      "bdGNIIG7hKG": "zHg7GoQufTB"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android2",
+    "userIdx": 9,
+    "trackedEntities": {
+      "F8IBumV6T1q": "Kldpl6J9Jpe",
+      "bdGNIIG7hKG": "osr9ex3phg7"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android2",
+    "userIdx": 10,
+    "trackedEntities": {
+      "F8IBumV6T1q": "gx9yDAA2gmW",
+      "bdGNIIG7hKG": "PW6ygH5syiM"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android3",
+    "userIdx": 11,
+    "trackedEntities": {
+      "F8IBumV6T1q": "v4ZqwGdONqV",
+      "bdGNIIG7hKG": "wcfMtYXqRua"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android3",
+    "userIdx": 12,
+    "trackedEntities": {
+      "F8IBumV6T1q": "o5ZJE2PAf7Z",
+      "bdGNIIG7hKG": "LRk1DjeAhII"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android3",
+    "userIdx": 13,
+    "trackedEntities": {
+      "F8IBumV6T1q": "eKD859tFX63",
+      "bdGNIIG7hKG": "wehvWaZwEBY"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android3",
+    "userIdx": 14,
+    "trackedEntities": {
+      "F8IBumV6T1q": "b9WpIezrAVv",
+      "bdGNIIG7hKG": "wGpXs8ARxbf"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android3",
+    "userIdx": 15,
+    "trackedEntities": {
+      "F8IBumV6T1q": "nq5gCjPMAT9",
+      "bdGNIIG7hKG": "nWUJkq5leSo"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android4",
+    "userIdx": 16,
+    "trackedEntities": {
+      "F8IBumV6T1q": "lXEaSlAbO2M",
+      "bdGNIIG7hKG": "A1k5JpMTmz2"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android4",
+    "userIdx": 17,
+    "trackedEntities": {
+      "F8IBumV6T1q": "F3pnZbwhCbg",
+      "bdGNIIG7hKG": "N1g5LarzEF8"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android4",
+    "userIdx": 18,
+    "trackedEntities": {
+      "F8IBumV6T1q": "ZuOHm4u7AF9",
+      "bdGNIIG7hKG": "tsilkq3FfVs"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android4",
+    "userIdx": 19,
+    "trackedEntities": {
+      "F8IBumV6T1q": "Ce7WAiJqDyT",
+      "bdGNIIG7hKG": "JIXkKQLNT4c"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android4",
+    "userIdx": 20,
+    "trackedEntities": {
+      "F8IBumV6T1q": "W740wq0Au56",
+      "bdGNIIG7hKG": "rB3oTxhmEA5"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android5",
+    "userIdx": 21,
+    "trackedEntities": {
+      "F8IBumV6T1q": "EHMRyP0b07P",
+      "bdGNIIG7hKG": "ndC6Oyi82T7"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android5",
+    "userIdx": 22,
+    "trackedEntities": {
+      "F8IBumV6T1q": "bSj1fJX6SJC",
+      "bdGNIIG7hKG": "OVMcqvdtBJr"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android5",
+    "userIdx": 23,
+    "trackedEntities": {
+      "F8IBumV6T1q": "hZkgwgxNPYL",
+      "bdGNIIG7hKG": "PEl04HFHZgz"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android5",
+    "userIdx": 24,
+    "trackedEntities": {
+      "F8IBumV6T1q": "XRRXPIv3mqn",
+      "bdGNIIG7hKG": "ZIepFDsKpEC"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android5",
+    "userIdx": 25,
+    "trackedEntities": {
+      "F8IBumV6T1q": "ngkimY6zLW4",
+      "bdGNIIG7hKG": "KOlk6MSRmIe"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android6",
+    "userIdx": 26,
+    "trackedEntities": {
+      "F8IBumV6T1q": "V8sBXl0h4C1",
+      "bdGNIIG7hKG": "xGeXGF55Sjw"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android6",
+    "userIdx": 27,
+    "trackedEntities": {
+      "F8IBumV6T1q": "f3oRhylCJ5s",
+      "bdGNIIG7hKG": "DkQnMGTBrFm"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android6",
+    "userIdx": 28,
+    "trackedEntities": {
+      "F8IBumV6T1q": "Li2qhyVNcpd",
+      "bdGNIIG7hKG": "i8Iqttyytas"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android6",
+    "userIdx": 29,
+    "trackedEntities": {
+      "F8IBumV6T1q": "VMUgJOArFPd",
+      "bdGNIIG7hKG": "kIOP2TRNDny"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android6",
+    "userIdx": 30,
+    "trackedEntities": {
+      "F8IBumV6T1q": "EeKpdvh604u",
+      "bdGNIIG7hKG": "d4BvWfXARZR"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android7",
+    "userIdx": 31,
+    "trackedEntities": {
+      "F8IBumV6T1q": "Y9Y8qTe53I3",
+      "bdGNIIG7hKG": "Kkf1cdxmy2v"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android7",
+    "userIdx": 32,
+    "trackedEntities": {
+      "F8IBumV6T1q": "FiZ2gF5UIdJ",
+      "bdGNIIG7hKG": "PBwKfOFMxc9"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android7",
+    "userIdx": 33,
+    "trackedEntities": {
+      "F8IBumV6T1q": "XK5Mgy9Yqmi",
+      "bdGNIIG7hKG": "nFFCaYPPGd4"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android7",
+    "userIdx": 34,
+    "trackedEntities": {
+      "F8IBumV6T1q": "zymYplucMQR",
+      "bdGNIIG7hKG": "pYMo69WUehV"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android7",
+    "userIdx": 35,
+    "trackedEntities": {
+      "F8IBumV6T1q": "zLyGK91dnQ9",
+      "bdGNIIG7hKG": "w2xOmkHArUz"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android8",
+    "userIdx": 36,
+    "trackedEntities": {
+      "F8IBumV6T1q": "ZztTJK0ROII",
+      "bdGNIIG7hKG": "zpeuccVkgSI"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android8",
+    "userIdx": 37,
+    "trackedEntities": {
+      "F8IBumV6T1q": "lge7ohTqbxq",
+      "bdGNIIG7hKG": "OUZ8Q6WX5RM"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android8",
+    "userIdx": 38,
+    "trackedEntities": {
+      "F8IBumV6T1q": "XnVHd4YAONY",
+      "bdGNIIG7hKG": "MfyGLA3WnF3"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android8",
+    "userIdx": 39,
+    "trackedEntities": {
+      "F8IBumV6T1q": "nxIAvTjRAbS",
+      "bdGNIIG7hKG": "TuPnmXcWeLz"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android8",
+    "userIdx": 40,
+    "trackedEntities": {
+      "F8IBumV6T1q": "bReq0mHZPL3",
+      "bdGNIIG7hKG": "JhfJDZnjHMZ"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android9",
+    "userIdx": 41,
+    "trackedEntities": {
+      "F8IBumV6T1q": "BD1jqBTghlu",
+      "bdGNIIG7hKG": "H7NsHj5ocVu"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android9",
+    "userIdx": 42,
+    "trackedEntities": {
+      "F8IBumV6T1q": "QmF5PSZmywH",
+      "bdGNIIG7hKG": "lOPFaPTMdEE"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android9",
+    "userIdx": 43,
+    "trackedEntities": {
+      "F8IBumV6T1q": "bWULkzOOJgc",
+      "bdGNIIG7hKG": "vZz4BstGSNH"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android9",
+    "userIdx": 44,
+    "trackedEntities": {
+      "F8IBumV6T1q": "NVxHrpyXu3x",
+      "bdGNIIG7hKG": "lt4z4FwCUYG"
+    }
+  },
+  {
+    "url": "https://academy.demos.dhis2.org/android9",
+    "userIdx": 45,
+    "trackedEntities": {
+      "F8IBumV6T1q": "F1cKvuRMp6n",
+      "bdGNIIG7hKG": "P91hl9AW5ky"
+    }
+  }
+]

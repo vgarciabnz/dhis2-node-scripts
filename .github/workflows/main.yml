@@ -1,0 +1,14 @@
+name: Run tests
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Echo hello
+        run: echo "Executed echo hello"

@@ -31,6 +31,15 @@ export default class DHIS2HttpClient {
         })
     }
 
+    async delete(apiStr) {
+        const response = await fetch(this.url + "/api/" + apiStr, {
+            method: "DELETE",
+            headers: this.headers
+        }).then(r => r.json());
+
+        console.log(`Delete object (${apiStr}): ${response.status}`);
+    }
+
     getIds(number = 1) {
         return this.get(`system/id?limit=${number}`)
             .then(response => response.json())

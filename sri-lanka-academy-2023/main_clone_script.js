@@ -3,6 +3,9 @@ import CloneProgramMetadataJob from "./clone_metadata_program.js";
 import CreateVisualization from "./create_visualization.js";
 import UpdateProgramSharing from "./update_program_sharing.js";
 import UpdateRoleJob from "./update_role_authorities.js";
+import RemoveProgramIndicatorRules from "./remove_program_indicator_rules.js";
+import CreateInstanceVisualization from "./create_instance_visualization.js";
+import CloneTeiJob from "./clone_tei.js";
 
 const superAdminUser = {
     username: "admin",
@@ -26,7 +29,7 @@ const programRuleToDelete = [
 ];
 
 const instances = [
-    {url: "https://academy.demos.dhis2.org/android1", from: 0, to: 5},
+    {url: "https://academy.demos.dhis2.org/android1", from: 1, to: 5},
     {url: "https://academy.demos.dhis2.org/android2", from: 6, to: 10},
     {url: "https://academy.demos.dhis2.org/android3", from: 11, to: 15},
     {url: "https://academy.demos.dhis2.org/android4", from: 16, to: 20},
@@ -39,10 +42,14 @@ const instances = [
 
 async function main() {
 
-    /*const job = new UpdateRoleJob(superAdminUser, instances, "p8rj2488UOX",
-        ["M_dhis-web-app-management", "M_dhis-web-tracker-capture", "M_dhis-web-cache-cleaner"], []);
+    //await new CloneTeiJob(superAdminUser, instances, "mappings/mapping_compiled.json", ["F8IBumV6T1q", "bdGNIIG7hKG"]).doWork();
 
-    await job.doWork();*/
+    //await new UpdateProgramSharing(superAdminUser, instances, "mappings/mapping_compiled.json").doWork();
+
+    const job = new UpdateRoleJob(superAdminUser, instances, "p8rj2488UOX",
+        [], ["ALL"]);
+
+    await job.doWork();
 
     /*
     fs.writeFileSync(usersFilePath, "");

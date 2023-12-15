@@ -1,0 +1,188 @@
+{
+  "href": "http://localhost:8080/api/visualizations/EJCORiOERj0",
+  "name": "BCG - doses given",
+  "created": "2023-11-25T00:26:34.261",
+  "lastUpdated": "2023-11-25T00:29:33.209",
+  "translations": [],
+  "externalAccess": false,
+  "createdBy": {
+    "id": "M5zQapPyTZI",
+    "code": "admin",
+    "name": "admin admin",
+    "displayName": "admin admin",
+    "username": "admin"
+  },
+  "favorites": [],
+  "lastUpdatedBy": {
+    "id": "M5zQapPyTZI",
+    "code": "admin",
+    "name": "admin admin",
+    "displayName": "admin admin",
+    "username": "admin"
+  },
+  "sharing": {
+    "owner": "M5zQapPyTZI",
+    "external": false,
+    "users": {},
+    "userGroups": {},
+    "public": "rw------"
+  },
+  "dataDimensionItems": [
+    {
+      "programIndicator": {
+        "id": "d3uj8Xka6Ts"
+      },
+      "dataDimensionItemType": "PROGRAM_INDICATOR"
+    }
+  ],
+  "organisationUnits": [],
+  "periods": [],
+  "dataElementGroupSetDimensions": [],
+  "organisationUnitGroupSetDimensions": [],
+  "organisationUnitLevels": [],
+  "categoryDimensions": [],
+  "categoryOptionGroupSetDimensions": [],
+  "attributeDimensions": [],
+  "dataElementDimensions": [],
+  "programIndicatorDimensions": [],
+  "userOrganisationUnit": true,
+  "userOrganisationUnitChildren": false,
+  "userOrganisationUnitGrandChildren": false,
+  "itemOrganisationUnitGroups": [],
+  "digitGroupSeparator": "SPACE",
+  "sortOrder": 0,
+  "topLimit": 0,
+  "aggregationType": "DEFAULT",
+  "completedOnly": false,
+  "skipRounding": false,
+  "hideTitle": false,
+  "hideSubtitle": false,
+  "interpretations": [],
+  "subscribers": [],
+  "columns": [
+    {
+      "id": "dx"
+    }
+  ],
+  "rows": [
+    {
+      "id": "pe"
+    }
+  ],
+  "filters": [
+    {
+      "id": "ou"
+    }
+  ],
+  "parentGraphMap": {},
+  "type": "COLUMN",
+  "reportingParams": {
+    "grandParentOrganisationUnit": false,
+    "parentOrganisationUnit": false,
+    "organisationUnit": false,
+    "reportingPeriod": false
+  },
+  "columnDimensions": [
+    "dx"
+  ],
+  "rowDimensions": [
+    "pe"
+  ],
+  "filterDimensions": [
+    "ou"
+  ],
+  "rowTotals": false,
+  "colTotals": false,
+  "rowSubTotals": false,
+  "colSubTotals": false,
+  "numberType": "VALUE",
+  "regressionType": "NONE",
+  "hideEmptyRowItems": "NONE",
+  "displayDensity": "NORMAL",
+  "fontSize": "NORMAL",
+  "fontStyle": {},
+  "colorSet": "DEFAULT",
+  "yearlySeries": [],
+  "showData": true,
+  "regression": false,
+  "cumulativeValues": false,
+  "percentStackedValues": false,
+  "showHierarchy": false,
+  "showDimensionLabels": false,
+  "hideEmptyRows": false,
+  "hideEmptyColumns": false,
+  "fixColumnHeaders": false,
+  "fixRowHeaders": false,
+  "hideLegend": false,
+  "noSpaceBetweenColumns": false,
+  "subscribed": false,
+  "displayName": "BCG - doses given",
+  "favorite": false,
+  "user": {
+    "id": "M5zQapPyTZI",
+    "code": "admin",
+    "name": "admin admin",
+    "displayName": "admin admin",
+    "username": "admin"
+  },
+  "displayFormName": "BCG - doses given",
+  "id": "EJCORiOERj0",
+  "attributeValues": [],
+  "relativePeriods": {
+    "thisDay": false,
+    "yesterday": false,
+    "last3Days": false,
+    "last7Days": false,
+    "last14Days": false,
+    "last30Days": false,
+    "last60Days": false,
+    "last90Days": false,
+    "last180Days": false,
+    "thisMonth": false,
+    "lastMonth": false,
+    "thisBimonth": false,
+    "lastBimonth": false,
+    "thisQuarter": false,
+    "lastQuarter": false,
+    "thisSixMonth": false,
+    "lastSixMonth": false,
+    "weeksThisYear": false,
+    "monthsThisYear": false,
+    "biMonthsThisYear": false,
+    "quartersThisYear": false,
+    "thisYear": false,
+    "monthsLastYear": false,
+    "quartersLastYear": false,
+    "lastYear": false,
+    "last5Years": false,
+    "last10Years": false,
+    "last12Months": true,
+    "last6Months": false,
+    "last3Months": false,
+    "last6BiMonths": false,
+    "last4Quarters": false,
+    "last2SixMonths": false,
+    "thisFinancialYear": false,
+    "lastFinancialYear": false,
+    "last5FinancialYears": false,
+    "last10FinancialYears": false,
+    "thisWeek": false,
+    "lastWeek": false,
+    "thisBiWeek": false,
+    "lastBiWeek": false,
+    "last4Weeks": false,
+    "last4BiWeeks": false,
+    "last12Weeks": false,
+    "last52Weeks": false
+  },
+  "series": [],
+  "optionalAxes": [],
+  "legend": {
+    "showKey": false
+  },
+  "icons": [],
+  "seriesKey": {
+    "hidden": false
+  },
+  "axes": []
+}
